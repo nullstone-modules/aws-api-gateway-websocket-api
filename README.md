@@ -1,8 +1,12 @@
-This capability injects the arn of the connection job definition into an application.
-This allows the application to schedule jobs with this job definition.
+This module creates an API Gateway with websockets routes configured.
+The $request.body.action passed as part of the request is used to determine the route to be taken.
 
-The env variables injected are:
-| Variable | Description |
-| --- | --- |
-| `BATCH_JOB_DEFINITION_ARN` | The arn of the Batch Job Definition that is connected to this capability. |
-| `BATCH_JOB_DEFINITION_NAME` | The name of the Batch Job Definition that is connected to this capability. |
+This modules sets up routes for the following paths/actions:
+
+| Body Action | Path |
+|-----------|-----------|
+| $connect    | `${subdomain_url}/${path}/websocket/connect` |
+| $default    | `${subdomain_url}/${path}/websocket/default` |
+| $disconnect | `${subdomain_url}/${path}/websocket/disconnect` |
+| chat        | `${subdomain_url}/${path}/websocket/chat` |
+| message     | `${subdomain_url}/${path}/websocket/message` |

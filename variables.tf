@@ -1,16 +1,7 @@
-variable "app_metadata" {
-  description = <<EOF
-Nullstone automatically injects metadata from the app module into this module through this variable.
-This variable is a reserved variable for capabilities.
-EOF
-
-  type    = map(string)
-  default = {}
-}
-
 variable "path" {
   type        = string
   description = <<EOF
-The path to route to this application. Any requests to the API Gateway beginning with this path will be routed to this application.
+The path to append to the subdomain in order to form the full URL that requests will be routed to.
+e.g. If the subdomain connected is for https://api.acme.com, and the path is /v1, then the full URL will be https://api.acme.com/v1.
 EOF
 }

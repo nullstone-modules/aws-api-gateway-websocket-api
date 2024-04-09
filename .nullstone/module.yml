@@ -1,15 +1,11 @@
 org_name: Evolve
-name: aws-websocket-api-gateway-routes
-friendly_name: API Gateway Websocket Routes
-description: Creates API Gateway Websocket routes and maps them to a path so that requests are routed to an application
-category: capability
-subcategory: ingress
+name: aws-websocket-api-gateway
+friendly_name: Websocket API Gateway
+description: Creates an API Gateway with websocket routes so that requests are routed to an application
+category: ingress
 provider_types:
     - aws
 platform: api-gateway
 subplatform: ""
 type: ""
-appCategories:
-    - container
-    - serverless
 is_public: false

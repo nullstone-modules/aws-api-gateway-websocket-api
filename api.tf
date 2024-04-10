@@ -20,7 +20,7 @@ resource "aws_apigatewayv2_integration" "connect-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/connect"
 }
-resource "aws_apigatewayv2_integration_response" "example" {
+resource "aws_apigatewayv2_integration_response" "connect-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.connect-integration.id
   integration_response_key      = "$default"
@@ -39,7 +39,7 @@ resource "aws_apigatewayv2_integration" "default-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/default"
 }
-resource "aws_apigatewayv2_integration_response" "example" {
+resource "aws_apigatewayv2_integration_response" "default-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.default-integration.id
   integration_response_key      = "$default"
@@ -58,7 +58,7 @@ resource "aws_apigatewayv2_integration" "disconnect-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/disconnect"
 }
-resource "aws_apigatewayv2_integration_response" "example" {
+resource "aws_apigatewayv2_integration_response" "disconnect-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.disconnect-integration.id
   integration_response_key      = "$default"
@@ -77,7 +77,7 @@ resource "aws_apigatewayv2_integration" "chat-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/chat"
 }
-resource "aws_apigatewayv2_integration_response" "example" {
+resource "aws_apigatewayv2_integration_response" "chat-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.chat-integration.id
   integration_response_key      = "$default"
@@ -96,7 +96,7 @@ resource "aws_apigatewayv2_integration" "message-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/message"
 }
-resource "aws_apigatewayv2_integration_response" "example" {
+resource "aws_apigatewayv2_integration_response" "message-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.message-integration.id
   integration_response_key      = "$default"

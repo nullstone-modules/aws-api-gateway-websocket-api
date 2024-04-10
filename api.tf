@@ -21,10 +21,9 @@ resource "aws_apigatewayv2_route" "connect-route" {
 
 resource "aws_apigatewayv2_integration" "connect-integration" {
   api_id             = aws_apigatewayv2_api.this.id
-  route_key          = "$connect"
   integration_type   = "HTTP"
   integration_method = "POST"
-  integration_uri    = "${local.subdomain_name}/${var.path}/websocket/connect"
+  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/connect"
 }
 
 resource "aws_apigatewayv2_route" "default-route" {
@@ -34,10 +33,9 @@ resource "aws_apigatewayv2_route" "default-route" {
 
 resource "aws_apigatewayv2_integration" "default-integration" {
   api_id             = aws_apigatewayv2_api.this.id
-  route_key          = "$default"
   integration_type   = "HTTP"
   integration_method = "POST"
-  integration_uri    = "${local.subdomain_name}/${var.path}/websocket/default"
+  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/default"
 }
 
 resource "aws_apigatewayv2_route" "disconnect-route" {
@@ -47,10 +45,9 @@ resource "aws_apigatewayv2_route" "disconnect-route" {
 
 resource "aws_apigatewayv2_integration" "disconnect-integration" {
   api_id             = aws_apigatewayv2_api.this.id
-  route_key          = "$disconnect"
   integration_type   = "HTTP"
   integration_method = "POST"
-  integration_uri    = "${local.subdomain_name}/${var.path}/websocket/disconnect"
+  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/disconnect"
 }
 
 resource "aws_apigatewayv2_route" "chat-route" {
@@ -60,10 +57,9 @@ resource "aws_apigatewayv2_route" "chat-route" {
 
 resource "aws_apigatewayv2_integration" "chat-integration" {
   api_id             = aws_apigatewayv2_api.this.id
-  route_key          = "chat"
   integration_type   = "HTTP"
   integration_method = "POST"
-  integration_uri    = "${local.subdomain_name}/${var.path}/websocket/chat"
+  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/chat"
 }
 
 resource "aws_apigatewayv2_route" "message-route" {
@@ -73,8 +69,7 @@ resource "aws_apigatewayv2_route" "message-route" {
 
 resource "aws_apigatewayv2_integration" "message-integration" {
   api_id             = aws_apigatewayv2_api.this.id
-  route_key          = "message"
   integration_type   = "HTTP"
   integration_method = "POST"
-  integration_uri    = "${local.subdomain_name}/${var.path}/websocket/message"
+  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/message"
 }

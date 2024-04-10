@@ -19,7 +19,7 @@ resource "aws_apigatewayv2_integration" "connect-integration" {
   integration_type   = "HTTP_PROXY"
   connection_type    = "INTERNET"
   integration_method = "POST"
-  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/connect"
+  integration_uri    = "${var.base_url}/websocket/connect"
 }
 resource "aws_apigatewayv2_integration_response" "connect-response" {
   api_id                        = aws_apigatewayv2_api.this.id
@@ -44,7 +44,7 @@ resource "aws_apigatewayv2_integration" "default-integration" {
   integration_type   = "HTTP_PROXY"
   connection_type    = "INTERNET"
   integration_method = "POST"
-  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/default"
+  integration_uri    = "${var.base_url}/websocket/default"
 }
 resource "aws_apigatewayv2_integration_response" "default-response" {
   api_id                        = aws_apigatewayv2_api.this.id
@@ -69,7 +69,7 @@ resource "aws_apigatewayv2_integration" "disconnect-integration" {
   integration_type   = "HTTP_PROXY"
   connection_type    = "INTERNET"
   integration_method = "POST"
-  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/disconnect"
+  integration_uri    = "${var.base_url}/websocket/disconnect"
 }
 resource "aws_apigatewayv2_integration_response" "disconnect-response" {
   api_id                        = aws_apigatewayv2_api.this.id
@@ -94,7 +94,7 @@ resource "aws_apigatewayv2_integration" "chat-integration" {
   integration_type   = "HTTP_PROXY"
   connection_type    = "INTERNET"
   integration_method = "POST"
-  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/chat"
+  integration_uri    = "${var.base_url}/websocket/chat"
 }
 resource "aws_apigatewayv2_integration_response" "chat-response" {
   api_id                        = aws_apigatewayv2_api.this.id
@@ -119,7 +119,7 @@ resource "aws_apigatewayv2_integration" "message-integration" {
   integration_type   = "HTTP_PROXY"
   connection_type    = "INTERNET"
   integration_method = "POST"
-  integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/message"
+  integration_uri    = "${var.base_url}/websocket/message"
 }
 resource "aws_apigatewayv2_integration_response" "message-response" {
   api_id                        = aws_apigatewayv2_api.this.id

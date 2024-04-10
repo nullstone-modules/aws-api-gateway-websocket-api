@@ -1,7 +1,7 @@
-variable "path" {
+variable "base_url" {
   type        = string
   description = <<EOF
-The path to append to the subdomain in order to form the full URL that requests will be routed to.
-e.g. If the subdomain connected is for https://api.acme.com, and the path is v1, then the full URL will be https://api.acme.com/v1.
+The endpoints for this API Gateway forward to http routes. This is the base url for those routes.
+e.g. If the base url is "https://api.acme.com", then one of the routes will be "https://api.acme.com/websocket/connect"
 EOF
 }

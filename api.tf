@@ -14,11 +14,6 @@ resource "aws_apigatewayv2_stage" "default" {
   tags = local.tags
 }
 
-resource "aws_apigatewayv2_route" "connect-route" {
-  api_id    = aws_apigatewayv2_api.this.id
-  route_key = "$connect"
-}
-
 resource "aws_apigatewayv2_integration" "connect-integration" {
   api_id             = aws_apigatewayv2_api.this.id
   integration_type   = "HTTP"
@@ -26,10 +21,12 @@ resource "aws_apigatewayv2_integration" "connect-integration" {
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/connect"
 }
 
-resource "aws_apigatewayv2_route" "default-route" {
+resource "aws_apigatewayv2_route" "connect-route" {
   api_id    = aws_apigatewayv2_api.this.id
-  route_key = "$default"
+  route_key = "$connect"
+  target    = "integrations/${aws_apigatewayv2_integration.connect-integration.id}"
 }
+
 
 resource "aws_apigatewayv2_integration" "default-integration" {
   api_id             = aws_apigatewayv2_api.this.id
@@ -38,10 +35,12 @@ resource "aws_apigatewayv2_integration" "default-integration" {
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/default"
 }
 
-resource "aws_apigatewayv2_route" "disconnect-route" {
+resource "aws_apigatewayv2_route" "default-route" {
   api_id    = aws_apigatewayv2_api.this.id
-  route_key = "$disconnect"
+  route_key = "$default"
+  target    = "integrations/${aws_apigatewayv2_integration.default-integration.id}"
 }
+
 
 resource "aws_apigatewayv2_integration" "disconnect-integration" {
   api_id             = aws_apigatewayv2_api.this.id
@@ -50,10 +49,12 @@ resource "aws_apigatewayv2_integration" "disconnect-integration" {
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/disconnect"
 }
 
-resource "aws_apigatewayv2_route" "chat-route" {
+resource "aws_apigatewayv2_route" "disconnect-route" {
   api_id    = aws_apigatewayv2_api.this.id
-  route_key = "chat"
+  route_key = "$disconnect"
+  target    = "integrations/${aws_apigatewayv2_integration.disconnect-integration.id}"
 }
+
 
 resource "aws_apigatewayv2_integration" "chat-integration" {
   api_id             = aws_apigatewayv2_api.this.id
@@ -62,14 +63,22 @@ resource "aws_apigatewayv2_integration" "chat-integration" {
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/chat"
 }
 
-resource "aws_apigatewayv2_route" "message-route" {
+resource "aws_apigatewayv2_route" "chat-route" {
   api_id    = aws_apigatewayv2_api.this.id
-  route_key = "message"
+  route_key = "chat"
+  target    = "integrations/${aws_apigatewayv2_integration.chat-integration.id}"
 }
+
 
 resource "aws_apigatewayv2_integration" "message-integration" {
   api_id             = aws_apigatewayv2_api.this.id
   integration_type   = "HTTP"
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/message"
+}
+
+resource "aws_apigatewayv2_route" "message-route" {
+  api_id    = aws_apigatewayv2_api.this.id
+  route_key = "message"
+  target    = "integrations/${aws_apigatewayv2_integration.message-integration.id}"
 }

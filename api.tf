@@ -20,7 +20,12 @@ resource "aws_apigatewayv2_integration" "connect-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/connect"
 }
-
+resource "aws_apigatewayv2_integration_response" "example" {
+  api_id                        = aws_apigatewayv2_api.this.id
+  integration_id                = aws_apigatewayv2_integration.connect-integration.id
+  integration_response_key      = "$default"
+  template_selection_expression = "200"
+}
 resource "aws_apigatewayv2_route" "connect-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "$connect"
@@ -34,7 +39,12 @@ resource "aws_apigatewayv2_integration" "default-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/default"
 }
-
+resource "aws_apigatewayv2_integration_response" "example" {
+  api_id                        = aws_apigatewayv2_api.this.id
+  integration_id                = aws_apigatewayv2_integration.default-integration.id
+  integration_response_key      = "$default"
+  template_selection_expression = "200"
+}
 resource "aws_apigatewayv2_route" "default-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "$default"
@@ -48,7 +58,12 @@ resource "aws_apigatewayv2_integration" "disconnect-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/disconnect"
 }
-
+resource "aws_apigatewayv2_integration_response" "example" {
+  api_id                        = aws_apigatewayv2_api.this.id
+  integration_id                = aws_apigatewayv2_integration.disconnect-integration.id
+  integration_response_key      = "$default"
+  template_selection_expression = "200"
+}
 resource "aws_apigatewayv2_route" "disconnect-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "$disconnect"
@@ -62,7 +77,12 @@ resource "aws_apigatewayv2_integration" "chat-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/chat"
 }
-
+resource "aws_apigatewayv2_integration_response" "example" {
+  api_id                        = aws_apigatewayv2_api.this.id
+  integration_id                = aws_apigatewayv2_integration.chat-integration.id
+  integration_response_key      = "$default"
+  template_selection_expression = "200"
+}
 resource "aws_apigatewayv2_route" "chat-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "chat"
@@ -76,7 +96,12 @@ resource "aws_apigatewayv2_integration" "message-integration" {
   integration_method = "POST"
   integration_uri    = "https://${local.subdomain_name}/${var.path}/websocket/message"
 }
-
+resource "aws_apigatewayv2_integration_response" "example" {
+  api_id                        = aws_apigatewayv2_api.this.id
+  integration_id                = aws_apigatewayv2_integration.message-integration.id
+  integration_response_key      = "$default"
+  template_selection_expression = "200"
+}
 resource "aws_apigatewayv2_route" "message-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "message"

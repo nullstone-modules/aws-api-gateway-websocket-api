@@ -16,12 +16,11 @@ resource "aws_apigatewayv2_stage" "default" {
   }
 
   depends_on = [aws_api_gateway_account.this]
-  /*
+
   access_log_settings {
-    destination_arn = "arn:aws:logs:us-east-1:123456789012:log-group:/aws/api-gateway/example-api"
+    destination_arn = aws_cloudwatch_log_group.this.arn
     format          = "{\"requestId\":\"$context.requestId\",\"ip\":\"$context.identity.sourceIp\",\"requestTime\":\"$context.requestTime\",\"httpMethod\":\"$context.httpMethod\",\"resourcePath\":\"$context.routeKey\",\"status\":\"$context.status\",\"responseLength\":\"$context.responseLength\"}"
   }
-  */
 }
 
 resource "aws_apigatewayv2_integration" "connect-integration" {

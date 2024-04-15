@@ -1,3 +1,10 @@
+resource "aws_cloudwatch_log_group" "this" {
+  name              = "/aws/apigateway/${local.resource_name}"
+  retention_in_days = 7
+  kms_key_id        = aws_kms_key.this.arn
+  tags              = local.tags
+}
+
 resource "aws_api_gateway_account" "this" {
   cloudwatch_role_arn = aws_iam_role.api-gateway-cloudwatch-role.arn
 }

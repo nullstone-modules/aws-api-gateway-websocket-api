@@ -15,6 +15,7 @@ resource "aws_apigatewayv2_stage" "default" {
     logging_level = "INFO"
   }
 
+  depends_on = [aws_api_gateway_account.this]
   /*
   access_log_settings {
     destination_arn = "arn:aws:logs:us-east-1:123456789012:log-group:/aws/api-gateway/example-api"

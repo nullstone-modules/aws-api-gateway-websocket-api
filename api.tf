@@ -13,12 +13,9 @@ resource "aws_apigatewayv2_stage" "default" {
   deployment_id = aws_apigatewayv2_deployment.this.id
 
   default_route_settings {
+    logging_level = "INFO"
     throttling_burst_limit = 5000
     throttling_rate_limit  = 10000
-  }
-
-  default_route_settings {
-    logging_level = "INFO"
   }
 
   depends_on = [aws_api_gateway_account.this]

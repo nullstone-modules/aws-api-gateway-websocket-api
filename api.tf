@@ -11,7 +11,16 @@ resource "aws_apigatewayv2_stage" "default" {
   api_id = aws_apigatewayv2_api.this.id
   name   = "default"
 
-  tags = local.tags
+  default_route_settings {
+    logging_level = "INFO"
+  }
+
+  /*
+  access_log_settings {
+    destination_arn = "arn:aws:logs:us-east-1:123456789012:log-group:/aws/api-gateway/example-api"
+    format          = "{\"requestId\":\"$context.requestId\",\"ip\":\"$context.identity.sourceIp\",\"requestTime\":\"$context.requestTime\",\"httpMethod\":\"$context.httpMethod\",\"resourcePath\":\"$context.routeKey\",\"status\":\"$context.status\",\"responseLength\":\"$context.responseLength\"}"
+  }
+  */
 }
 
 resource "aws_apigatewayv2_integration" "connect-integration" {

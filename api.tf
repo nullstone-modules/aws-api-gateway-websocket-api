@@ -8,8 +8,9 @@ resource "aws_apigatewayv2_api" "this" {
 }
 
 resource "aws_apigatewayv2_stage" "default" {
-  api_id = aws_apigatewayv2_api.this.id
-  name   = "default"
+  api_id        = aws_apigatewayv2_api.this.id
+  name          = "default"
+  deployment_id = aws_apigatewayv2_deployment.this.id
 
   default_route_settings {
     logging_level = "INFO"

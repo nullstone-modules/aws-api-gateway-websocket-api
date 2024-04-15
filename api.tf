@@ -7,6 +7,7 @@ resource "aws_apigatewayv2_api" "this" {
   tags = local.tags
 }
 
+/*
 resource "aws_apigatewayv2_stage" "default" {
   api_id        = aws_apigatewayv2_api.this.id
   name          = "default"
@@ -19,7 +20,7 @@ resource "aws_apigatewayv2_stage" "default" {
     format          = "{\"requestId\":\"$context.requestId\",\"ip\":\"$context.identity.sourceIp\",\"requestTime\":\"$context.requestTime\",\"httpMethod\":\"$context.httpMethod\",\"resourcePath\":\"$context.routeKey\",\"status\":\"$context.status\",\"responseLength\":\"$context.responseLength\"}"
   }
 }
-/*
+
 resource "aws_apigatewayv2_deployment" "this" {
   api_id = aws_apigatewayv2_api.this.id
 

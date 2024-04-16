@@ -16,25 +16,17 @@ resource "aws_apigatewayv2_stage" "default" {
 
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.this.arn
-    format          = "{\"requestId\":\"$context.requestId\",\"ip\":\"$context.identity.sourceIp\",\"requestTime\":\"$context.requestTime\",\"httpMethod\":\"$context.httpMethod\",\"resourcePath\":\"$context.routeKey\",\"status\":\"$context.status\",\"responseLength\":\"$context.responseLength\"}"
+    format          = file("logs.template")
   }
 }
-/*
-resource "aws_apigatewayv2_deployment" "this" {
-  api_id = aws_apigatewayv2_api.this.id
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-*/
 
 resource "aws_apigatewayv2_integration" "connect-integration" {
-  api_id             = aws_apigatewayv2_api.this.id
-  integration_type   = "HTTP_PROXY"
-  connection_type    = "INTERNET"
-  integration_method = "POST"
-  integration_uri    = "${var.base_url}/websocket/connect"
+  api_id                    = aws_apigatewayv2_api.this.id
+  integration_type          = "HTTP"
+  connection_type           = "INTERNET"
+  integration_method        = "POST"
+  content_handling_strategy = "CONVERT_TO_TEXT"
+  integration_uri           = "${var.base_url}/websocket/connect"
 
   template_selection_expression = "\\$default"
   request_templates = {
@@ -60,11 +52,12 @@ resource "aws_apigatewayv2_route_response" "connect-response" {
 
 
 resource "aws_apigatewayv2_integration" "default-integration" {
-  api_id             = aws_apigatewayv2_api.this.id
-  integration_type   = "HTTP_PROXY"
-  connection_type    = "INTERNET"
-  integration_method = "POST"
-  integration_uri    = "${var.base_url}/websocket/default"
+  api_id                    = aws_apigatewayv2_api.this.id
+  integration_type          = "HTTP"
+  connection_type           = "INTERNET"
+  integration_method        = "POST"
+  content_handling_strategy = "CONVERT_TO_TEXT"
+  integration_uri           = "${var.base_url}/websocket/default"
 
   template_selection_expression = "\\$default"
   request_templates = {
@@ -90,11 +83,12 @@ resource "aws_apigatewayv2_route_response" "default-response" {
 
 
 resource "aws_apigatewayv2_integration" "disconnect-integration" {
-  api_id             = aws_apigatewayv2_api.this.id
-  integration_type   = "HTTP_PROXY"
-  connection_type    = "INTERNET"
-  integration_method = "POST"
-  integration_uri    = "${var.base_url}/websocket/disconnect"
+  api_id                    = aws_apigatewayv2_api.this.id
+  integration_type          = "HTTP"
+  connection_type           = "INTERNET"
+  integration_method        = "POST"
+  content_handling_strategy = "CONVERT_TO_TEXT"
+  integration_uri           = "${var.base_url}/websocket/disconnect"
 
   template_selection_expression = "\\$default"
   request_templates = {
@@ -120,11 +114,12 @@ resource "aws_apigatewayv2_route_response" "disconnect-response" {
 
 
 resource "aws_apigatewayv2_integration" "chat-integration" {
-  api_id             = aws_apigatewayv2_api.this.id
-  integration_type   = "HTTP_PROXY"
-  connection_type    = "INTERNET"
-  integration_method = "POST"
-  integration_uri    = "${var.base_url}/websocket/chat"
+  api_id                    = aws_apigatewayv2_api.this.id
+  integration_type          = "HTTP"
+  connection_type           = "INTERNET"
+  integration_method        = "POST"
+  content_handling_strategy = "CONVERT_TO_TEXT"
+  integration_uri           = "${var.base_url}/websocket/chat"
 
   template_selection_expression = "\\$default"
   request_templates = {
@@ -150,11 +145,12 @@ resource "aws_apigatewayv2_route_response" "chat-response" {
 
 
 resource "aws_apigatewayv2_integration" "message-integration" {
-  api_id             = aws_apigatewayv2_api.this.id
-  integration_type   = "HTTP_PROXY"
-  connection_type    = "INTERNET"
-  integration_method = "POST"
-  integration_uri    = "${var.base_url}/websocket/message"
+  api_id                    = aws_apigatewayv2_api.this.id
+  integration_type          = "HTTP"
+  connection_type           = "INTERNET"
+  integration_method        = "POST"
+  content_handling_strategy = "CONVERT_TO_TEXT"
+  integration_uri           = "${var.base_url}/websocket/message"
 
   template_selection_expression = "\\$default"
   request_templates = {

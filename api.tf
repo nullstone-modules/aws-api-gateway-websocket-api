@@ -36,13 +36,9 @@ resource "aws_apigatewayv2_integration" "connect-integration" {
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/connect"
 
+  template_selection_expression = "\\$default"
   request_templates = {
-    "$default" = jsonencode({
-      connectionId = "$context.connectionId",
-      domainName   = "$context.domainName",
-      stage        = "$context.stage",
-      body         = "$input.body",
-    })
+    "$default" = file("integration-request.template")
   }
 }
 resource "aws_apigatewayv2_integration_response" "connect-response" {
@@ -70,13 +66,9 @@ resource "aws_apigatewayv2_integration" "default-integration" {
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/default"
 
+  template_selection_expression = "\\$default"
   request_templates = {
-    "$default" = jsonencode({
-      connectionId = "$context.connectionId",
-      domainName   = "$context.domainName",
-      stage        = "$context.stage",
-      body         = "$input.body",
-    })
+    "$default" = file("integration-request.template")
   }
 }
 resource "aws_apigatewayv2_integration_response" "default-response" {
@@ -104,13 +96,9 @@ resource "aws_apigatewayv2_integration" "disconnect-integration" {
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/disconnect"
 
+  template_selection_expression = "\\$default"
   request_templates = {
-    "$default" = jsonencode({
-      connectionId = "$context.connectionId",
-      domainName   = "$context.domainName",
-      stage        = "$context.stage",
-      body         = "$input.body",
-    })
+    "$default" = file("integration-request.template")
   }
 }
 resource "aws_apigatewayv2_integration_response" "disconnect-response" {
@@ -138,13 +126,9 @@ resource "aws_apigatewayv2_integration" "chat-integration" {
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/chat"
 
+  template_selection_expression = "\\$default"
   request_templates = {
-    "$default" = jsonencode({
-      connectionId = "$context.connectionId",
-      domainName   = "$context.domainName",
-      stage        = "$context.stage",
-      body         = "$input.body",
-    })
+    "$default" = file("integration-request.template")
   }
 }
 resource "aws_apigatewayv2_integration_response" "chat-response" {
@@ -172,13 +156,9 @@ resource "aws_apigatewayv2_integration" "message-integration" {
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/message"
 
+  template_selection_expression = "\\$default"
   request_templates = {
-    "$default" = jsonencode({
-      connectionId = "$context.connectionId",
-      domainName   = "$context.domainName",
-      stage        = "$context.stage",
-      body         = "$input.body",
-    })
+    "$default" = file("integration-request.template")
   }
 }
 resource "aws_apigatewayv2_integration_response" "message-response" {

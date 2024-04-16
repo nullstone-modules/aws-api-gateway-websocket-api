@@ -41,7 +41,7 @@ resource "aws_apigatewayv2_integration" "connect-integration" {
       connectionId = "$context.connectionId",
       domainName   = "$context.domainName",
       stage        = "$context.stage",
-      body         = "input.body",
+      body         = "$input.body",
     })
   }
 }
@@ -75,7 +75,7 @@ resource "aws_apigatewayv2_integration" "default-integration" {
       connectionId = "$context.connectionId",
       domainName   = "$context.domainName",
       stage        = "$context.stage",
-      body         = "input.body",
+      body         = "$input.body",
     })
   }
 }
@@ -109,7 +109,7 @@ resource "aws_apigatewayv2_integration" "disconnect-integration" {
       connectionId = "$context.connectionId",
       domainName   = "$context.domainName",
       stage        = "$context.stage",
-      body         = "input.body",
+      body         = "$input.body",
     })
   }
 }
@@ -143,7 +143,7 @@ resource "aws_apigatewayv2_integration" "chat-integration" {
       connectionId = "$context.connectionId",
       domainName   = "$context.domainName",
       stage        = "$context.stage",
-      body         = "input.body",
+      body         = "$input.body",
     })
   }
 }
@@ -177,7 +177,7 @@ resource "aws_apigatewayv2_integration" "message-integration" {
       connectionId = "$context.connectionId",
       domainName   = "$context.domainName",
       stage        = "$context.stage",
-      body         = "input.body",
+      body         = "$input.body",
     })
   }
 }

@@ -40,7 +40,6 @@ resource "aws_apigatewayv2_integration_response" "connect-response" {
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
-*/
 resource "aws_apigatewayv2_route" "connect-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "$connect"
@@ -51,6 +50,7 @@ resource "aws_apigatewayv2_route_response" "connect-response" {
   route_id           = aws_apigatewayv2_route.connect-route.id
   route_response_key = "$default"
 }
+*/
 
 
 resource "aws_apigatewayv2_integration" "default-integration" {
@@ -73,7 +73,6 @@ resource "aws_apigatewayv2_integration_response" "default-response" {
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
-*/
 resource "aws_apigatewayv2_route" "default-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "$default"
@@ -84,6 +83,7 @@ resource "aws_apigatewayv2_route_response" "default-response" {
   route_id           = aws_apigatewayv2_route.default-route.id
   route_response_key = "$default"
 }
+*/
 
 
 resource "aws_apigatewayv2_integration" "disconnect-integration" {
@@ -106,7 +106,6 @@ resource "aws_apigatewayv2_integration_response" "disconnect-response" {
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
-*/
 resource "aws_apigatewayv2_route" "disconnect-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "$disconnect"
@@ -117,6 +116,7 @@ resource "aws_apigatewayv2_route_response" "disconnect-response" {
   route_id           = aws_apigatewayv2_route.disconnect-route.id
   route_response_key = "$default"
 }
+*/
 
 
 resource "aws_apigatewayv2_integration" "chat-integration" {
@@ -139,7 +139,6 @@ resource "aws_apigatewayv2_integration_response" "chat-response" {
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
-*/
 resource "aws_apigatewayv2_route" "chat-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "chat"
@@ -150,6 +149,7 @@ resource "aws_apigatewayv2_route_response" "chat-response" {
   route_id           = aws_apigatewayv2_route.chat-route.id
   route_response_key = "$default"
 }
+*/
 
 
 resource "aws_apigatewayv2_integration" "message-integration" {
@@ -172,7 +172,6 @@ resource "aws_apigatewayv2_integration_response" "message-response" {
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
-*/
 resource "aws_apigatewayv2_route" "message-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "message"
@@ -183,3 +182,4 @@ resource "aws_apigatewayv2_route_response" "message-response" {
   route_id           = aws_apigatewayv2_route.message-route.id
   route_response_key = "$default"
 }
+*/

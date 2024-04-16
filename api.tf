@@ -35,6 +35,15 @@ resource "aws_apigatewayv2_integration" "connect-integration" {
   connection_type    = "INTERNET"
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/connect"
+
+  request_templates = {
+    "$default" = jsonencode({
+      connectionId = "$context.connectionId",
+      domainName   = "$context.domainName",
+      stage        = "$context.stage",
+      body         = "input.body",
+    })
+  }
 }
 resource "aws_apigatewayv2_integration_response" "connect-response" {
   api_id                        = aws_apigatewayv2_api.this.id
@@ -60,6 +69,15 @@ resource "aws_apigatewayv2_integration" "default-integration" {
   connection_type    = "INTERNET"
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/default"
+
+  request_templates = {
+    "$default" = jsonencode({
+      connectionId = "$context.connectionId",
+      domainName   = "$context.domainName",
+      stage        = "$context.stage",
+      body         = "input.body",
+    })
+  }
 }
 resource "aws_apigatewayv2_integration_response" "default-response" {
   api_id                        = aws_apigatewayv2_api.this.id
@@ -85,6 +103,15 @@ resource "aws_apigatewayv2_integration" "disconnect-integration" {
   connection_type    = "INTERNET"
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/disconnect"
+
+  request_templates = {
+    "$default" = jsonencode({
+      connectionId = "$context.connectionId",
+      domainName   = "$context.domainName",
+      stage        = "$context.stage",
+      body         = "input.body",
+    })
+  }
 }
 resource "aws_apigatewayv2_integration_response" "disconnect-response" {
   api_id                        = aws_apigatewayv2_api.this.id
@@ -110,6 +137,15 @@ resource "aws_apigatewayv2_integration" "chat-integration" {
   connection_type    = "INTERNET"
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/chat"
+
+  request_templates = {
+    "$default" = jsonencode({
+      connectionId = "$context.connectionId",
+      domainName   = "$context.domainName",
+      stage        = "$context.stage",
+      body         = "input.body",
+    })
+  }
 }
 resource "aws_apigatewayv2_integration_response" "chat-response" {
   api_id                        = aws_apigatewayv2_api.this.id
@@ -135,6 +171,15 @@ resource "aws_apigatewayv2_integration" "message-integration" {
   connection_type    = "INTERNET"
   integration_method = "POST"
   integration_uri    = "${var.base_url}/websocket/message"
+
+  request_templates = {
+    "$default" = jsonencode({
+      connectionId = "$context.connectionId",
+      domainName   = "$context.domainName",
+      stage        = "$context.stage",
+      body         = "input.body",
+    })
+  }
 }
 resource "aws_apigatewayv2_integration_response" "message-response" {
   api_id                        = aws_apigatewayv2_api.this.id

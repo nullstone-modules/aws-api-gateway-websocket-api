@@ -16,7 +16,7 @@ resource "aws_apigatewayv2_stage" "default" {
 
   access_log_settings {
     destination_arn = aws_cloudwatch_log_group.this.arn
-    format          = file("logs.template")
+    format          = "{\"requestId\":\"$context.requestId\",\"ip\":\"$context.identity.sourceIp\",\"requestTime\":\"$context.requestTime\",\"httpMethod\":\"$context.httpMethod\",\"resourcePath\":\"$context.routeKey\",\"status\":\"$context.status\",\"responseLength\":\"$context.responseLength\"}"
   }
 }
 
@@ -33,12 +33,14 @@ resource "aws_apigatewayv2_integration" "connect-integration" {
     "$default" = file("integration-request.template")
   }
 }
+/*
 resource "aws_apigatewayv2_integration_response" "connect-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.connect-integration.id
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
+*/
 resource "aws_apigatewayv2_route" "connect-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "$connect"
@@ -64,12 +66,14 @@ resource "aws_apigatewayv2_integration" "default-integration" {
     "$default" = file("integration-request.template")
   }
 }
+/*
 resource "aws_apigatewayv2_integration_response" "default-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.default-integration.id
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
+*/
 resource "aws_apigatewayv2_route" "default-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "$default"
@@ -95,12 +99,14 @@ resource "aws_apigatewayv2_integration" "disconnect-integration" {
     "$default" = file("integration-request.template")
   }
 }
+/*
 resource "aws_apigatewayv2_integration_response" "disconnect-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.disconnect-integration.id
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
+*/
 resource "aws_apigatewayv2_route" "disconnect-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "$disconnect"
@@ -126,12 +132,14 @@ resource "aws_apigatewayv2_integration" "chat-integration" {
     "$default" = file("integration-request.template")
   }
 }
+/*
 resource "aws_apigatewayv2_integration_response" "chat-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.chat-integration.id
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
+*/
 resource "aws_apigatewayv2_route" "chat-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "chat"
@@ -157,12 +165,14 @@ resource "aws_apigatewayv2_integration" "message-integration" {
     "$default" = file("integration-request.template")
   }
 }
+/*
 resource "aws_apigatewayv2_integration_response" "message-response" {
   api_id                        = aws_apigatewayv2_api.this.id
   integration_id                = aws_apigatewayv2_integration.message-integration.id
   integration_response_key      = "$default"
   template_selection_expression = "200"
 }
+*/
 resource "aws_apigatewayv2_route" "message-route" {
   api_id    = aws_apigatewayv2_api.this.id
   route_key = "message"

@@ -1,0 +1,6 @@
+{
+    "connectionId": "$context.connectionId",
+    "domainName": "$context.domainName",
+    "stage": "$context.stage",
+    "body": $input.body
+}

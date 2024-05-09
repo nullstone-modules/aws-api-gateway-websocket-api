@@ -6,6 +6,6 @@ output "websocket_api_arn" {
   value = aws_apigatewayv2_api.this.arn
 }
 
-output "websocket_api_name" {
-  value = aws_apigatewayv2_api.this.name
+output "websocket_api_id" {
+  value = aws_apigatewayv2_api.this.id
 }
